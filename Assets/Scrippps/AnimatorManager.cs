@@ -6,7 +6,7 @@ public class AnimatorManager : MonoBehaviour
 {
     private Animator animator;
     private int horizontal;
-    private int vertical; 
+    private int vertical;
 
     private void Awake()
     {

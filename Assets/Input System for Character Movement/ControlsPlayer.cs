@@ -114,6 +114,34 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Player_Actions"",
+            ""id"": ""a9223e26-a9c2-461c-9a5e-d7ff6d7dfb35"",
+            ""actions"": [
+                {
+                    ""name"": ""Shift"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a42f771-4f21-49fa-a113-a18273167c42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a2c29768-378c-4960-af61-d2b76153d569"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -122,6 +150,9 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
         m_Movement_Player = asset.FindActionMap("Movement_Player", throwIfNotFound: true);
         m_Movement_Player_Move = m_Movement_Player.FindAction("Move", throwIfNotFound: true);
         m_Movement_Player_Cam = m_Movement_Player.FindAction("Cam", throwIfNotFound: true);
+        // Player_Actions
+        m_Player_Actions = asset.FindActionMap("Player_Actions", throwIfNotFound: true);
+        m_Player_Actions_Shift = m_Player_Actions.FindAction("Shift", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,9 +264,59 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
         }
     }
     public Movement_PlayerActions @Movement_Player => new Movement_PlayerActions(this);
+
+    // Player_Actions
+    private readonly InputActionMap m_Player_Actions;
+    private List<IPlayer_ActionsActions> m_Player_ActionsActionsCallbackInterfaces = new List<IPlayer_ActionsActions>();
+    private readonly InputAction m_Player_Actions_Shift;
+    public struct Player_ActionsActions
+    {
+        private @ControlsPlayer m_Wrapper;
+        public Player_ActionsActions(@ControlsPlayer wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shift => m_Wrapper.m_Player_Actions_Shift;
+        public InputActionMap Get() { return m_Wrapper.m_Player_Actions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player_ActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayer_ActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_Player_ActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Player_ActionsActionsCallbackInterfaces.Add(instance);
+            @Shift.started += instance.OnShift;
+            @Shift.performed += instance.OnShift;
+            @Shift.canceled += instance.OnShift;
+        }
+
+        private void UnregisterCallbacks(IPlayer_ActionsActions instance)
+        {
+            @Shift.started -= instance.OnShift;
+            @Shift.performed -= instance.OnShift;
+            @Shift.canceled -= instance.OnShift;
+        }
+
+        public void RemoveCallbacks(IPlayer_ActionsActions instance)
+        {
+            if (m_Wrapper.m_Player_ActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayer_ActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_Player_ActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Player_ActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public Player_ActionsActions @Player_Actions => new Player_ActionsActions(this);
     public interface IMovement_PlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnCam(InputAction.CallbackContext context);
+    }
+    public interface IPlayer_ActionsActions
+    {
+        void OnShift(InputAction.CallbackContext context);
     }
 }

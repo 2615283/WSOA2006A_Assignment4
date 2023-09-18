@@ -92,6 +92,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player_Actions",
+            "id": "a9223e26-a9c2-461c-9a5e-d7ff6d7dfb35",
+            "actions": [
+                {
+                    "name": "Shift",
+                    "type": "Button",
+                    "id": "3a42f771-4f21-49fa-a113-a18273167c42",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a2c29768-378c-4960-af61-d2b76153d569",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

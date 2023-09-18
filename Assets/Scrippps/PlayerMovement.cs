@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Quaternion rotationTarget;
     private Quaternion rotationPlayer;
 
+    public bool isSneaking;
+
+    public float sneakingSpeed = 1.5f;
     public float speed = 7;
     public float speedRotation = 15;
 
@@ -38,7 +41,15 @@ public class PlayerMovement : MonoBehaviour
         direction += camObject.right * inputManager.inputHorizontal;
         direction.Normalize();
         direction.y = 0;
-        direction = direction * speed;
+
+        if (isSneaking)
+        {
+            direction = direction * sneakingSpeed;
+        }
+        else
+        {
+            direction = direction * speed;
+        }        
 
         velocity = direction;
         rigidbodyPlayer.velocity = velocity;

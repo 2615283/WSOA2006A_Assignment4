@@ -6,7 +6,7 @@ public class Knife : MonoBehaviour
 {
     public int enemy = 10;
 
-    public GameObject knife;
+    
 
     private void OnTriggerEnter(Collider collision)
     {

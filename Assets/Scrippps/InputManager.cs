@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     public bool tab_input;
 
     public GameObject knife;
-    public GameObject stab;
+    //public GameObject stab;
 
     public float time;
     public float limit = 0.2f;
@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
 
         knife.SetActive(false);
-        stab.SetActive(false);
+        //stab.SetActive(false);
     }
 
     private void Update()
@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             knife.SetActive(true);
-            stab.SetActive(true);
+            //stab.SetActive(true);
             count = true;
         }
 
@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
         if (time >= limit)
         {
             knife.SetActive(false);
-            stab.SetActive(false);
+            //stab.SetActive(false);
             time = 0;
             count = false;
         }

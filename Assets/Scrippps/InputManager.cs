@@ -21,10 +21,39 @@ public class InputManager : MonoBehaviour
     public bool shift_input;
     public bool tab_input;
 
+    public GameObject knife;
+
+    public float time;
+    public float limit = 0.2f;
+    public bool count;
+
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        knife.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            knife.SetActive(true);
+            count = true;
+        }
+
+        if (count == true)
+        {
+            time += Time.deltaTime;
+        }
+
+        if (time >= limit)
+        {
+            knife.SetActive(false);
+            time = 0;
+            count = false;
+        }
     }
 
     private void OnEnable()

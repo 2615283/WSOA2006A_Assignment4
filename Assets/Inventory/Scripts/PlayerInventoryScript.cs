@@ -66,7 +66,7 @@ public class PlayerInventoryScript : MonoBehaviour
             {
                 // once the player picks up the keycard it is destroyed and added to the inventory
                 Keycards.Add(itemType);
-                Keycard.SetActive(false);
+                Destroy(Keycard.gameObject);
                 KeycardFound =false;
             }
         }

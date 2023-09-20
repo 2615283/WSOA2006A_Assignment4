@@ -38,7 +38,7 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        transformTarget = FindObjectOfType<PlayerManager>().transform;
+        transformTarget = GameObject.Find("LowPolyMan").GetComponent<PlayerManager>().transform;
         inputManager = FindObjectOfType<InputManager>();
         camTransform = Camera.main.transform;
         positionDefault = camTransform.localPosition.z;

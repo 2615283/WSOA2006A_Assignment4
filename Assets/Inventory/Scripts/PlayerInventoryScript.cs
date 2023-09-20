@@ -56,6 +56,7 @@ public class PlayerInventoryScript : MonoBehaviour
                 // once the player picks up the document it is destroyed and added to the inventory
                 Inventory.Add(itemType);
                 Destroy(Documents.gameObject);
+                ObjectFound = false;
             }
         }
 
@@ -65,7 +66,8 @@ public class PlayerInventoryScript : MonoBehaviour
             {
                 // once the player picks up the keycard it is destroyed and added to the inventory
                 Keycards.Add(itemType);
-                Destroy(Keycard.gameObject);
+                Keycard.SetActive(false);
+                KeycardFound =false;
             }
         }
         //shows the player what is in their inventory

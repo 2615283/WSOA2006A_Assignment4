@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     public float inputHorizontal;
 
     public bool shift_input;
+    public bool tab_input;
 
     private void Awake()
     {
@@ -37,6 +38,9 @@ public class InputManager : MonoBehaviour
 
             controlsPlayer.Player_Actions.Shift.performed += k => shift_input = true;
             controlsPlayer.Player_Actions.Shift.canceled += k => shift_input = false;
+
+            controlsPlayer.Player_Actions.Tab.performed += k => tab_input = true;
+            controlsPlayer.Player_Actions.Tab.canceled += k => tab_input = false;
         }
 
         controlsPlayer.Enable();
@@ -51,6 +55,7 @@ public class InputManager : MonoBehaviour
     {
         MovementHandlerInput();
         SneakingHandler();
+        SprintingHandler();
     }
 
     private void MovementHandlerInput()
@@ -63,7 +68,7 @@ public class InputManager : MonoBehaviour
 
         amountMove = Mathf.Clamp01(Mathf.Abs(inputHorizontal) + Mathf.Abs(inputVertical));
 
-        animatorManager.UpdateAnimationValues(0, amountMove, playerMovement.isSneaking);
+        animatorManager.UpdateAnimationValues(0, amountMove, playerMovement.isSneaking, playerMovement.isSprinting);
     }
 
     private void SneakingHandler()
@@ -75,6 +80,18 @@ public class InputManager : MonoBehaviour
         else
         {
             playerMovement.isSneaking = false;
+        }
+    }
+
+    private void SprintingHandler()
+    {
+        if (tab_input)
+        {
+            playerMovement.isSprinting = true;
+        }
+        else
+        {
+            playerMovement.isSprinting = false;
         }
     }
 }

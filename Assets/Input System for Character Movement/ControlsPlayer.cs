@@ -127,6 +127,15 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tab"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c45f884-71ae-44c7-a3a0-c049ef11d9eb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -138,6 +147,17 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c26779b3-9196-4c16-aa86-951150e2209c"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -153,6 +173,7 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
         // Player_Actions
         m_Player_Actions = asset.FindActionMap("Player_Actions", throwIfNotFound: true);
         m_Player_Actions_Shift = m_Player_Actions.FindAction("Shift", throwIfNotFound: true);
+        m_Player_Actions_Tab = m_Player_Actions.FindAction("Tab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -269,11 +290,13 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player_Actions;
     private List<IPlayer_ActionsActions> m_Player_ActionsActionsCallbackInterfaces = new List<IPlayer_ActionsActions>();
     private readonly InputAction m_Player_Actions_Shift;
+    private readonly InputAction m_Player_Actions_Tab;
     public struct Player_ActionsActions
     {
         private @ControlsPlayer m_Wrapper;
         public Player_ActionsActions(@ControlsPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shift => m_Wrapper.m_Player_Actions_Shift;
+        public InputAction @Tab => m_Wrapper.m_Player_Actions_Tab;
         public InputActionMap Get() { return m_Wrapper.m_Player_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -286,6 +309,9 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
             @Shift.started += instance.OnShift;
             @Shift.performed += instance.OnShift;
             @Shift.canceled += instance.OnShift;
+            @Tab.started += instance.OnTab;
+            @Tab.performed += instance.OnTab;
+            @Tab.canceled += instance.OnTab;
         }
 
         private void UnregisterCallbacks(IPlayer_ActionsActions instance)
@@ -293,6 +319,9 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
             @Shift.started -= instance.OnShift;
             @Shift.performed -= instance.OnShift;
             @Shift.canceled -= instance.OnShift;
+            @Tab.started -= instance.OnTab;
+            @Tab.performed -= instance.OnTab;
+            @Tab.canceled -= instance.OnTab;
         }
 
         public void RemoveCallbacks(IPlayer_ActionsActions instance)
@@ -318,5 +347,6 @@ public partial class @ControlsPlayer: IInputActionCollection2, IDisposable
     public interface IPlayer_ActionsActions
     {
         void OnShift(InputAction.CallbackContext context);
+        void OnTab(InputAction.CallbackContext context);
     }
 }

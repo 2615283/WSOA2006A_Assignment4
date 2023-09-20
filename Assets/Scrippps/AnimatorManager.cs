@@ -15,11 +15,16 @@ public class AnimatorManager : MonoBehaviour
         vertical = Animator.StringToHash("Vert");
     }
 
-    public void UpdateAnimationValues(float movementHorizontal, float movementVertical, bool isSneaking)
+    public void UpdateAnimationValues(float movementHorizontal, float movementVertical, bool isSneaking, bool isSprinting)
     {
         if (isSneaking)
         {
             movementVertical = 2;
+        }
+
+        if (isSprinting)
+        {
+            movementVertical = 3;
         }
 
 

@@ -1625,6 +1625,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4120155786146966773, guid: f0ab40e8c4660184a8b8d50347420915, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120155786146966773, guid: f0ab40e8c4660184a8b8d50347420915, type: 3}
+      propertyPath: sprintingSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4268377946542741132, guid: f0ab40e8c4660184a8b8d50347420915, type: 3}
       propertyPath: m_Layer
       value: 6

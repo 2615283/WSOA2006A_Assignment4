@@ -14,9 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private Quaternion rotationPlayer;
 
     public bool isSneaking;
+    public bool isSprinting;
 
     public float sneakingSpeed = 1.5f;
     public float speed = 7;
+    public float sprintingSpeed = 10;
     public float speedRotation = 15;
 
     Rigidbody rigidbodyPlayer;
@@ -46,10 +48,14 @@ public class PlayerMovement : MonoBehaviour
         {
             direction = direction * sneakingSpeed;
         }
+        else if (isSprinting)
+        {
+            direction = direction * sprintingSpeed;
+        }  
         else
         {
             direction = direction * speed;
-        }        
+        }
 
         velocity = direction;
         rigidbodyPlayer.velocity = velocity;

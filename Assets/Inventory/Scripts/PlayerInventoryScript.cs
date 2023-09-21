@@ -37,6 +37,7 @@ public class PlayerInventoryScript : MonoBehaviour
             //accesses the object's name in order to add it to the inventory
             itemType = collision.gameObject.GetComponent<Collectible>().ItemType;
             KeycardFound = true;
+            Keycard = GameObject.FindWithTag("Keycard");
         }
     }
 

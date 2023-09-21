@@ -24,6 +24,7 @@ public class DoorScript : MonoBehaviour
             {
                 //opens the door
                 Open = true;
+                gameObject.SetActive(false);
             }
             else //runs if the player does not have a keycard in their inventory
             {
@@ -32,9 +33,9 @@ public class DoorScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
             // when a player comes close to the door it checks the conditions
             Triggered = true;

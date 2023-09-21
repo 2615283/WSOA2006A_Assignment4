@@ -8,9 +8,17 @@ public class Knife : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Knife"))
         {
-            enemy = enemy - 1;
+            enemy = enemy - 5;
+        }
+    }
+
+    private void Update()
+    {
+        if (enemy <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

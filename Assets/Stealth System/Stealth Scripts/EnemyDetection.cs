@@ -12,8 +12,8 @@ public class EnemyDetection : MonoBehaviour
 
     private void Start()
     {
-        StealthScript = GetComponent<PlayerStealthScript>();
-        SeesPlayer = GetComponent<EnemyTriggers>();
+        StealthScript = GameObject.Find("LowPolyMan Variant").GetComponent<PlayerStealthScript>();
+        SeesPlayer = GameObject.Find("RunningRadius").GetComponent<EnemyTriggers>();
     }
 
     private void Update()

@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 2588160326730936969}
   - component: {fileID: 868192217960406098}
   - component: {fileID: 2878818490268060006}
+  - component: {fileID: 3303072732019782403}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -230,8 +231,8 @@ Transform:
   m_GameObject: {fileID: 8496560811021957792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.08582267, y: -0.37113523, z: 0.17397308}
-  m_LocalScale: {x: 6, y: 6, z: 6}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 10, y: 20, z: 10}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7428091162088522250}
   - {fileID: 944326395432243931}
@@ -304,14 +305,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.85110176
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.061038114}
 --- !u!114 &2878818490268060006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,3 +331,16 @@ MonoBehaviour:
   RunningDetection: {fileID: 8387147103521092422}
   WalkingDetection: {fileID: 2587534125161335660}
   SneakingDetection: {fileID: 8331601258323437899}
+--- !u!114 &3303072732019782403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8496560811021957792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2242fc00c421fc843b47a4fdd937a94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: 10

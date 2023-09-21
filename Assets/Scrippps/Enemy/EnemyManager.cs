@@ -7,18 +7,23 @@ namespace EM
     public class EnemyManager : PlayerManager
     {
         public bool isPerformingAction;
-        public float detectionRadius;
+        [Header("AI Settings")]
+        public float detectionRadius = 20;
         public float maxDetectionAngle = 50;
         public float minDetectionAngle = -50;
 
         LocomotionManager locoManager;
-        //[Header("A.I Settings")]
         void Awake()
         {
             locoManager = GetComponent<LocomotionManager>();
         }
 
         void Update()
+        {
+           
+        }
+
+        private void FixedUpdate()
         {
             HandleCurrentAction();
         }
@@ -29,6 +34,10 @@ namespace EM
             if(locoManager.currentTarget == null)
             {
                 locoManager.HandleDetection();
+            }
+            else
+            {
+                locoManager.HandleMoveToTarget();
             }
         }
     }

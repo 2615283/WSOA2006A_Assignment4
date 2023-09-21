@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     GameObject playerScreen;
     [SerializeField]
     GameObject winScreen;
+    [SerializeField]
+    GameObject loading;
 
     public void Quit()
     {
@@ -18,7 +20,7 @@ public class GameController : MonoBehaviour
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PauseGame()
@@ -38,7 +40,8 @@ public class GameController : MonoBehaviour
     public void Reset()
     {
         //stop the movement of all the things that need to stop moving
-        Invoke(nameof(ReloadLevel), 3f);
+        Invoke(nameof(ReloadLevel), 2f);
+        loading.SetActive(true);
         //reset all stats, including artifacts collected, enemies killed and player health
         //if a reset function for the player's death exists in another script. we will use it here.
     }

@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimManager : AnimatorManager
+namespace EM
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EnemyAnimManager : AnimatorManager
     {
-        
-    }
+        LocomotionManager locoManager;
+        private void Awake()
+        {
+            animator = GetComponent<Animator>();
+            locoManager = GetComponentInParent<LocomotionManager>();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnAnimatorMove()
+        {
+            float delta = Time.deltaTime;
+            locoManager.enemyRB.drag = 0;
+            Vector3 deltaPosition = animator.deltaPosition;
+            deltaPosition.y = 0;
+            Vector3 velocity = deltaPosition / delta;
+            locoManager.enemyRB.velocity = velocity;
+        }
     }
 }

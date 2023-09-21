@@ -41,8 +41,14 @@ public class PlayerStats : CharacterStats
             {
                 currentHealth = 0;
                 healthCount.text = currentHealth.ToString();
-                Reset();
-                
+                loseMessage.SetActive(true);
+                Time.timeScale = 0;
+                //Reset();
+                if(Time.timeScale <= 0)
+                {
+                    Reset();
+                    Time.timeScale = 1;
+                }
             }
         }
 
@@ -68,14 +74,13 @@ public class PlayerStats : CharacterStats
         //GetComponent<MeshRenderer>().enabled = false;
         //GetComponent<PlayerMovement>().enabled = false;
         //GetComponent<Rigidbody>().isKinematic = true;
-        Invoke(nameof(ReloadLevel), 0.5f);
+        Invoke(nameof(ReloadLevel), 2f);
         currentHealth = 100;
-        //loseMessage.enabled = true;
-
     }
 
     private void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Time.timeScale = 1;
     }
 }
